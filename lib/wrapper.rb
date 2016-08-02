@@ -16,7 +16,7 @@ class HearthstoneWrapper
     leg_array = []
     @card_array.each do |card_element|
       if card_element["rarity"] == "LEGENDARY"
-          leg_array << card_element["name"]
+          leg_array << card_element
         end
       end
     leg_array.uniq
@@ -26,7 +26,7 @@ class HearthstoneWrapper
       epic_array = []
       @card_array.each do |card_element|
         if card_element["rarity"] == "EPIC"
-            epic_array << card_element["name"]
+            epic_array << card_element
           end
         end
       epic_array.uniq
@@ -36,7 +36,7 @@ class HearthstoneWrapper
     rare_array = []
     @card_array.each do |card_element|
       if card_element["rarity"] == "RARE"
-          rare_array << card_element["name"]
+          rare_array << card_element
         end
       end
     rare_array.uniq
@@ -46,11 +46,13 @@ class HearthstoneWrapper
     common_array = []
     @card_array.each do |card_element|
       if card_element["rarity"] == "COMMON"
-          common_array << card_element["name"]
+          common_array << card_element
         end
       end
     common_array.uniq
   end
+
+
 
 end 
 
