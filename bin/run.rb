@@ -1,37 +1,37 @@
-# require_relative "../wrapper.rb"
 require_relative "../API.rb"
+require_relative "../lib/CLI.rb"
+
 require 'pry'
 
-new_user = User.new
+cards = Cards.new
+go = Interface.new
+running = true
 
-puts "Which Hearthstone Mood Card are you?"
+while running == true
 
- puts "Press the number for threat that you like the most!"
+directive = go.display_options
 
- puts "1. My magic will tear you apart!" # - mage
- puts "2. Justice demands retribution!" # - paladin
- puts "3. Nature will rise against you!" # - druid
- puts "4. I will be your death!"  # - rogue
- puts "5. I will hunt you down!"  # - hunter 
- puts "6. Your soul shall suffer!" # - warlock
- puts "7. The Light shall burn you!" # - priest
- puts "8. The Elements will destroy you!" # - shaman
- puts "9. I will crush you!" # - warrior
-
-
-user_hero_input = gets.chomp
-
-new_user.get_class_cards(user_hero_input)
-
-
-puts "Are you a thinker or a doer?"
-puts "1.thinker" # - spell
-puts "2. doer" # - minion
-
+if directive.downcase == 'bye'
+  puts "Deuces #{go.name}!"
+  running = false
+elsif directive.to_i == 1
+  go.display_rando(cards.get_random_card)
+elsif directive.to_i == 2
+  go.mood_card_calc
+  cards.get_mood_card(go.class, go.type, go.rarity)
+  go.display_mood_card(cards.mood_card)
+elsif directive.to_i == 3
+  cards.get_class_cards(go.pick_a_class).each do |class_card|
+    puts class_card["name"]
+  end
+  puts "\n"
+else
+  puts "Invalid Command, try again."
+end
+end
 
 
- # puts "are you a thinker or a doer?"
- # 
+
 
 
 
