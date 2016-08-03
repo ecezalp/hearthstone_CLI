@@ -21,7 +21,6 @@ class Interface
   def display_rando(card)
     card.each do |key, value|
       puts "#{key.to_s.capitalize}: #{value}\n"
-      
     end
   end
 
@@ -33,9 +32,6 @@ class Interface
 
 
   def mood_card_calc
-
- 
-
      puts "Which Hearthstone Mood Card are you?"
      puts "Press the number for threat that you like the most!"
      puts "1. My magic will tear you apart!" # - mage
@@ -51,39 +47,35 @@ class Interface
      threat = gets.chomp.to_i
 
      running = true
+       while running == true
+       running = false
+       @class = case threat
 
-     while running == true
-     running = false
-     @class = case threat
+                  when 1
+                    "mage"
+                  when 2
+                    "paladin"
+                  when 3
+                    "druid"
+                  when 4
+                    "rogue"
+                  when 5
+                    "hunter"
+                  when 6
+                    "warlock"
+                  when 7
+                    "priest"
+                  when 8
+                    "shaman"
+                  when 9
+                    "warrior"
+                  else
 
-                when 1
-                  "mage"
-                when 2
-                  "paladin"
-                when 3
-                  "druid"
-                when 4
-                  "rogue"
-                when 5
-                  "hunter"
-                when 6
-                  "warlock"
-                when 7
-                  "priest"
-                when 8
-                  "shaman"
-                when 9
-                  "warrior"
-                else
                   running = true
                   puts "Invalid choice, choose again: "
                   threat = gets.chomp.to_i
-
+                  end
                 end
-              end
-
-              
-
 
       puts "Which is mightier? The pen or the sword."
       puts "1. I choose the pen." # - spell
@@ -91,6 +83,7 @@ class Interface
 
       print "Choice: " 
       choice = gets.chomp.to_i
+
 
       running = true
       while running == true
@@ -117,7 +110,6 @@ class Interface
 
       choice = gets.chomp.to_i
 
-
       running = true 
       while running == true
       running = false
@@ -143,16 +135,10 @@ class Interface
                     choice = gets.chomp.to_i
                   end
                 end
-    end
-
+                    
     def display_mood_card(mood_card)
       puts "\nYour current mood is best captured by the #{mood_card["playerClass"].downcase.capitalize} class card....\n"
       puts "\n                      #{mood_card["name"]}\n           (#{mood_card["flavor"]})\n\n"
     end
-
-
-
-
-
-
+  end
 end

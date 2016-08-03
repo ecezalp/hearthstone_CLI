@@ -37,4 +37,18 @@ class Cards
   def get_random_card
     @card_array.sample
   end
+
+
+
+
+  def show_class_card_array
+    puts @class_card_array
+  end
+
+# def show_user_card_names
+#  @user_cards.each do |element|
+#   puts element["name"]
+# end
+# end 
+
 end
