@@ -6,8 +6,6 @@ class Interface
     puts "Welcome to Hearthstoners, an app that does 3 whole things.\n"
     puts "Let's kick things off, what should I call you?\n"
     @name = gets.chomp
-
-
   end
 
   def display_options
@@ -22,7 +20,7 @@ class Interface
 
   def display_rando(card)
     card.each do |key, value|
-      puts "\n\n#{key.to_s.capitalize}: #{value}\n\n"
+      puts "#{key.to_s.capitalize}: #{value}\n"
     end
   end
 
@@ -48,28 +46,35 @@ class Interface
 
      threat = gets.chomp.to_i
 
-     @class = case threat
+     running = true
+       while running == true
+       running = false
+       @class = case threat
 
-                when 1
-                  "mage"
-                when 2
-                  "paladin"
-                when 3
-                  "druid"
-                when 4
-                  "rogue"
-                when 5
-                  "hunter"
-                when 6
-                  "warlock"
-                when 7
-                  "priest"
-                when 8
-                  "shaman"
-                when 9
-                  "warrior"
-                else
-                  "Invalid choice: Choose again."
+                  when 1
+                    "mage"
+                  when 2
+                    "paladin"
+                  when 3
+                    "druid"
+                  when 4
+                    "rogue"
+                  when 5
+                    "hunter"
+                  when 6
+                    "warlock"
+                  when 7
+                    "priest"
+                  when 8
+                    "shaman"
+                  when 9
+                    "warrior"
+                  else
+
+                  running = true
+                  puts "Invalid choice, choose again: "
+                  threat = gets.chomp.to_i
+                  end
                 end
 
       puts "Which is mightier? The pen or the sword."
@@ -79,14 +84,22 @@ class Interface
       print "Choice: " 
       choice = gets.chomp.to_i
 
+
+      running = true
+      while running == true
+      running = false
+
       @type = case choice
                 when 1
                   "SPELL"
                 when 2
                   "MINION"
                 else
-                  "Invalid choice: Choose again."
+                  puts "Invalid choice: Choose again."
+                  running = true
+                  choice = gets.chomp.to_i
                 end
+              end
 
       puts "Okay, last question. Which one of these describes your current mental state?"
       puts "1 => All I do is blerg, blerg, blerg, blerg blerg"
@@ -96,6 +109,10 @@ class Interface
       puts "5 => I know WHENDAHOLLABLEE!"
 
       choice = gets.chomp.to_i
+
+      running = true 
+      while running == true
+      running = false
 
       @rarity = case choice
                   when 1
@@ -107,20 +124,21 @@ class Interface
                   when 4
                     "EPIC"
                   when 5
-                    "LEGENDARY"
+                    if @type == "SPELL"
+                      "EPIC"
+                    else
+                      "LEGENDARY"
+                    end 
                   else
-                    "Invalid choice: Choose again."
+                    puts "Invalid choice: Choose again."
+                    running = true
+                    choice = gets.chomp.to_i
                   end
-    end
-
+                end
+                    
     def display_mood_card(mood_card)
       puts "\nYour current mood is best captured by the #{mood_card["playerClass"].downcase.capitalize} class card....\n"
       puts "\n                      #{mood_card["name"]}\n           (#{mood_card["flavor"]})\n\n"
     end
-
-
-
-
-
-
+  end
 end
